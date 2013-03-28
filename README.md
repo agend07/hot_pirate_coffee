@@ -11,3 +11,4 @@ tools
 - nodejs
 - coffeescript
 - mongodb
+- express
