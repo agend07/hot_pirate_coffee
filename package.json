@@ -1,0 +1,21 @@
+{
+  "name": "p2",
+  "version": "0.0.0",
+  "description": "Show the most popular torrents from piratebay",
+  "main": "index.js",
+  "scripts": {
+    "serve": "coffee app.coffee"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "request": "~2.16.6",
+    "cheerio": "~0.10.8",
+    "async": "~0.2.6",
+    "underscore": "~1.4.4",
+    "express": "~3.1.0",
+    "jade": "~0.28.2",
+    "mongojs": "~0.7.3"
+  }
+}
