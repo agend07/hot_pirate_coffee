@@ -1,6 +1,3 @@
-h2 to jest index
-
-
 ul
 - each item in data
   li
@@ -9,3 +6,6 @@ ul
     span= item.leechers
     span -
     span= item.seeders
+
+p generated at:
+    span= data[0].timestamp

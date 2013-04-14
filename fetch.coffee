@@ -25,6 +25,7 @@ processPage = (address, callback) ->
                     link: 'http://thepiratebay.com' + $row.find('td div.detName a').attr('href')
                     seeders: parseInt($row.find('td').eq(2).text(), 10) or 0
                     leechers: parseInt($row.find('td').eq(3).text(), 10) or 0
+                    timestamp: new Date()
 
             callback null, result
 
