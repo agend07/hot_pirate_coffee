@@ -64,5 +64,7 @@ async.map addresses, processPage, (err, results) ->
 
     db.close()
 
+    console.log "fetched data at #{new Date()}"
+
 
 
