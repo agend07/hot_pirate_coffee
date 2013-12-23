@@ -1,13 +1,16 @@
 {
-  "name": "p2",
-  "version": "0.0.0",
+  "name": "hot_pirate_coffee",
+  "version": "0.0.2",
   "description": "Show the most popular torrents from piratebay",
   "main": "index.js",
   "scripts": {
     "serve": "coffee app.coffee"
   },
-  "repository": "",
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agend07/hot_pirate_coffee"
+  },
+  "author": "Arek Czechowski",
   "license": "BSD",
   "dependencies": {
     "request": "~2.16.6",
