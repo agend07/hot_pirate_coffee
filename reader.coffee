@@ -1,6 +1,6 @@
 mongojs = require 'mongojs'
 
-db = mongojs 'mongodb://localhost/pirate_db', ['movies']
+db = mongojs 'pirate_db', ['movies']
 
 db.movies.find().sort {leechers: -1}, (err, docs) ->
     for doc in docs

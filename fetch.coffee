@@ -4,7 +4,17 @@ cheerio = require 'cheerio'
 _ = require 'underscore'
 fs = require 'fs'
 mongojs = require 'mongojs'
+program = require 'commander'
 
+program
+    .version('0.0.1')
+    .option('-c, --collection [name]', 'Mongo collection name', 'movies')
+    .option('-n, --number [nr]', 'Pirate page nr [201]', '201')
+    .parse process.argv
+
+# example usage:
+# coffee fetch.coffee -n 201 -c movies - this one is default
+# coffee fetch.coffee -n 205 -c tvs
 
 processPage = (address, callback) ->
 
@@ -31,7 +41,8 @@ processPage = (address, callback) ->
 
 
 addresses = for index in [0...20]
-    "http://thepiratebay.se/browse/201/#{index}/3"
+    "http://thepiratebay.se/browse/#{program.number}/#{index}/3"
+
 
 torrents = []
 
@@ -48,19 +59,13 @@ async.map addresses, processPage, (err, results) ->
     torrents = _.sortBy(torrents, 'leechers').reverse()
     torrents = _.first(torrents, 50)
 
-    # write to file
-    # fs.writeFile('data.json', JSON.stringify(torrents, null, 4))
-
-    # write to console
-    # for torrent in torrents
-    #     console.log torrent
-
-    # write do mongodb
-    db = mongojs 'mongodb://localhost/pirate_db', ['movies']
-    db.movies.drop()
+    db = mongojs 'pirate_db'
+    collection = db.collection program.collection
+    
+    collection.drop()
 
     for torrent in torrents
-        db.movies.insert(torrent);
+        collection.insert(torrent);
 
     db.close()
 

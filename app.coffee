@@ -8,17 +8,18 @@ app.configure () ->
     app.set 'views', __dirname + '/views'
     app.set 'view engine', 'jade'
 
-
 app.get '/', (req, res) ->
+    display res, 'movies'
 
-    # fetch data from file
-    # fs.readFile __dirname + '/data.json', 'utf8', (err, data) ->
-    #     res.render 'index', {data: JSON.parse(data)}
+app.get '/tv', (req, res) ->
+    display res, 'tvs'
 
-    # fetch data from mongodb
-    db = mongojs 'mongodb://localhost/pirate_db', ['movies']
 
-    db.movies.find().sort({leechers: -1}).limit 100, (err, docs) ->
+display = (res, collectionName) ->
+    db = mongojs 'pirate_db'
+    collection = db.collection collectionName
+
+    collection.find().sort({leechers: -1}).limit 100, (err, docs) ->
         res.render 'index', {data: docs}
         db.close()
 
